@@ -1,0 +1,66 @@
+Ext.define('MobileJudge.view.student.Grades', {
+    extend: 'MobileJudge.view.charts.Base',
+    xtype: 'student_grades', //'chartjudges',
+
+    title: 'Student Grades',
+
+    items: [
+        {
+            xtype: 'polar',
+            bind: '{judges}',
+
+            platformConfig: {
+                classic: {
+                    interactions: 'rotate',
+                    insetPadding: 20,
+                    innerPadding: 20,
+                    legend: {
+                        docked: 'right'
+                    },
+                    series: [
+                        {
+                            type: 'pie',
+                            angleField: 'total',
+                            donut: 50,
+                            highlight: {
+                                margin: 40
+                            },
+                            label: {
+                                field: 'state',
+                                calloutLine: {
+                                    length: 60,
+                                    width: 3
+                                    // specifying 'color' is also possible here
+                                }
+                            },
+                            tooltip: {
+                                trackMouse: true,
+                                renderer: 'tipRenderer'
+                            }
+                        }
+                    ]
+                },
+                modern: {
+                    interactions: 'rotate',
+                    insetPadding: 10,
+                    innerPadding: 10,
+                    series: [
+                        {
+                            type: 'pie',
+                            angleField: 'total',
+                            donut: 50,
+                            highlight: true,
+                            label: {
+                                field: 'state'/*,
+								calloutLine: {
+									width: 3
+								}*/
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+});
+
