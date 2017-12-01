@@ -19,7 +19,19 @@ Ext.define('MobileJudge.view.unregistered.Controller', {
     onTap: function (view, index, item, record) {
             localStorage.setItem("userId", JSON.stringify(record.id));
             //localStorage.setItem("email", JSON.stringify(record.email));
+            //var rec = view.getRecord(item);
             
+            var store = view.getStore();
+            console.log("===============================");
+            console.log(store);
+            var rec = store.getById(JSON.stringify(record.id));
+            //var rec = view.getRecord(record.id);
+            console.log("===============================");
+            console.log(rec.get('email'));
+            //console.log(rec.get('fullName'));
+            localStorage.setItem("email", rec.get('email'));
+            var fullName = rec.get('fullName');
+            localStorage.setItem("userName", rec.get('fullName'));
             Ext.widget({
                 xtype: 'register',
                 record: record,
